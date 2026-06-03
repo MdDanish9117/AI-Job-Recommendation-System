@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Resume</title>
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dbeafe, #eff6ff, #f8fafc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    position: relative;
+}
+
+/* FLOAT EFFECT */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(37,99,235,0.12);
+    z-index: 0;
+}
+
+body::before {
+    width: 220px;
+    height: 220px;
+    top: -80px;
+    left: -80px;
+}
+
+body::after {
+    width: 200px;
+    height: 200px;
+    bottom: -80px;
+    right: -80px;
+}
+
+/* CARD (SMALL FRAME) */
+.upload-card {
+    width: 100%;
+    max-width: 600px;    
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    z-index: 10;
+}
+
+/* HEADER */
+.upload-header {
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    padding: 25px;   
+    text-align: center;
+    color: white;
+}
+
+.upload-header h1 {
+    font-size: 28px;   
+    margin-bottom: 5px;
+}
+
+.upload-header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* BODY */
+.upload-body {
+    padding: 25px;  
+}
+
+/* INFO BOX */
+.info-box {
+    background: #f8fafc;
+    border-left: 4px solid #2563eb;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+}
+
+.info-box h4 {
+    color: #2563eb;
+    margin-bottom: 6px;
+    font-size: 16px;
+}
+
+.info-box ul {
+    padding-left: 16px;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+/* DROP ZONE */
+.drop-zone {
+    border: 2px dashed #3b82f6;
+    border-radius: 15px;
+    padding: 35px 15px;   
+    text-align: center;
+    background: #f8fbff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.drop-zone:hover {
+    background: #eff6ff;
+}
+
+.drop-zone.dragover {
+    background: #dbeafe;
+}
+
+/* ICON */
+.upload-icon {
+    font-size: 40px;   /* 👈 reduced */
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.drop-zone h3 {
+    font-size: 18px;   /* 👈 reduced */
+    margin-bottom: 3px;
+}
+
+.drop-zone p {
+    font-size: 13px;
+    color: #64748b;
+}
+
+/* FILE NAME */
+#file-name {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #16a34a;
+}
+
+/* BUTTON */
+.analyze-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.analyze-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* BACK BUTTON */
+.back-btn {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .upload-card {
+        max-width: 95%;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="upload-card">
+
+    <!-- HEADER -->
+    <div class="upload-header">
+        <h1>Upload Resume</h1>
+        <p>AI-Powered Resume Analysis System</p>
+    </div>
+
+    <!-- BODY -->
+    <div class="upload-body">
+
+        <!-- INSTRUCTIONS -->
+        <div class="info-box">
+            <h4>Instructions</h4>
+            <ul>
+                <li>Upload only PDF file</li>
+                <li>File size should be under 5MB</li>
+                <li>Clear resume gives better AI results</li>
+                <li>Drag & drop supported</li>
+            </ul>
+        </div>
+
+        <!-- FORM -->
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="drop-zone" id="drop-zone">
+
+                <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+                <h3>Drop Resume Here</h3>
+                <p>or click to upload</p>
+
+                <input type="file" name="resume_file" id="resume-input" hidden required>
+
+                <p id="file-name"></p>
+
+            </div>
+
+            <button type="submit" class="analyze-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Analyze Resume
+            </button>
+
+        </form>
+
+        <!-- BACK -->
+        <a href="/dashboard/" class="btn btn-outline-primary back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back To Dashboard
+        </a>
+
+    </div>
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+
+const dropZone = document.getElementById("drop-zone");
+const fileInput = document.getElementById("resume-input");
+const fileName = document.getElementById("file-name");
+
+dropZone.addEventListener("click", () => fileInput.click());
+
+fileInput.addEventListener("change", () => {
+    if(fileInput.files.length > 0){
+        fileName.textContent = "Selected: " + fileInput.files[0].name;
+    }
+});
+
+dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZone.classList.add("dragover");
+});
+
+dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("dragover");
+});
+
+dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    fileInput.files = e.dataTransfer.files;
+    fileName.textContent = "Selected: " + e.dataTransfer.files[0].name;
+    dropZone.classList.remove("dragover");
+});
+
+</script>
+
+</body>
+</html>

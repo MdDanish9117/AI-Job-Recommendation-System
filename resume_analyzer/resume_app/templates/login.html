@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Beautiful Login Page</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#e0f2fe,#dbeafe,#f8fafc);
+            padding:40px 20px;
+            position:relative;
+        }
+
+        /* BACKGROUND EFFECT */
+
+        body::before{
+            content:"";
+            position:absolute;
+            width:350px;
+            height:350px;
+            background:rgba(59,130,246,0.12);
+            border-radius:50%;
+            top:-120px;
+            left:-120px;
+        }
+
+        body::after{
+            content:"";
+            position:absolute;
+            width:300px;
+            height:300px;
+            background: pink;
+            border-radius:50%;
+            bottom:-120px;
+            right:-120px;
+        }
+
+        /* MAIN CONTAINER */
+
+        .container{
+            width:1100px;
+            max-width:100%;
+            background:#fff;
+            border-radius:30px;
+            overflow:hidden;
+            display:flex;
+            box-shadow:0 15px 40px rgba(0,0,0,0.15);
+            position:relative;
+            z-index:10;
+        }
+
+        /* LEFT SIDE */
+
+        .left-side{
+            width:50%;
+            background:linear-gradient(180deg,#2563eb,#3b82f6,#60a5fa);
+            padding:55px;
+            color:white;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:bold;
+            margin-bottom:30px;
+        }
+
+        .left-side h1{
+            font-size:56px;
+            line-height:1.1;
+            margin-bottom:22px;
+        }
+
+        .left-side h1 span{
+            color:#dbeafe;
+        }
+
+        .left-side .description{
+            font-size:19px;
+            line-height:1.7;
+            color:#eff6ff;
+            margin-bottom:35px;
+        }
+
+        /* FEATURE BOX */
+
+        .feature{
+            background:rgba(255,255,255,0.18);
+            padding:18px;
+            border-radius:18px;
+            margin-bottom:16px;
+            backdrop-filter:blur(5px);
+            border:1px solid rgba(255,255,255,0.15);
+        }
+
+        .feature h3{
+            margin-bottom:6px;
+            font-size:21px;
+        }
+
+        .feature p{
+            font-size:15px;
+            color:#e0f2fe;
+        }
+
+        /* RIGHT SIDE */
+
+        .right-side{
+            width:50%;
+            padding:50px 55px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            background:#ffffff;
+        }
+
+        .right-side h2{
+            text-align:center;
+            font-size:44px;
+            color:#111827;
+            margin-bottom:8px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#6b7280;
+            margin-bottom:24px;
+            font-size:17px;
+        }
+
+        /* INSTRUCTION BOX */
+
+        .instruction-box{
+            background:#f8fafc;
+            border-left:5px solid #3b82f6;
+            padding:18px;
+            border-radius:15px;
+            margin-bottom:22px;
+        }
+
+        .instruction-box h4{
+            margin-bottom:8px;
+            color:#2563eb;
+            font-size:19px;
+        }
+
+        .instruction-box ul{
+            padding-left:18px;
+            line-height:1.8;
+            color:#475569;
+            font-size:15px;
+        }
+
+        /* FORM */
+
+        form p{
+            margin-bottom:18px;
+        }
+
+        form label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:600;
+            color:#374151;
+            font-size:15px;
+        }
+
+        form input{
+            width:100%;
+            padding:14px;
+            border:1px solid #cbd5e1;
+            border-radius:12px;
+            outline:none;
+            font-size:15px;
+            transition:0.3s;
+            background:#fff;
+        }
+
+        form input:focus{
+            border-color:#3b82f6;
+            box-shadow:0 0 10px rgba(59,130,246,0.18);
+        }
+
+        /* BUTTON */
+
+        button{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background:linear-gradient(90deg,#2563eb,#3b82f6);
+            color:white;
+            font-size:17px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+            margin-top:8px;
+        }
+
+        button:hover{
+            background:linear-gradient(90deg,#1d4ed8,#2563eb);
+            transform:translateY(-2px);
+        }
+
+        /* REGISTER LINK */
+
+        .register-link{
+            text-align:center;
+            margin-top:18px;
+            color:#64748b;
+            font-size:15px;
+        }
+
+        .register-link a{
+            text-decoration:none;
+            color:#2563eb;
+            font-weight:bold;
+        }
+
+        .register-link a:hover{
+            text-decoration:underline;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:900px){
+
+            body{
+                padding:20px;
+            }
+
+            .container{
+                flex-direction:column;
+            }
+
+            .left-side,
+            .right-side{
+                width:100%;
+                padding:40px;
+            }
+
+            .left-side h1{
+                font-size:42px;
+            }
+
+            .right-side h2{
+                font-size:36px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- LEFT SECTION -->
+
+        <div class="left-side">
+
+            <div class="logo">
+                Resume Analyzer
+            </div>
+
+            <h1>
+                Welcome <br>
+                <span>Back</span>
+            </h1>
+
+            <p class="description">
+                Login to access your AI-powered resume dashboard,
+                track resume scores, and get smart recommendations.
+            </p>
+
+            <div class="feature">
+                <h3>AI Resume Analysis</h3>
+                <p>Smart skill detection system.</p>
+            </div>
+
+            <div class="feature">
+                <h3>Resume Tracking</h3>
+                <p>Monitor your resume performance.</p>
+            </div>
+
+            <div class="feature">
+                <h3>Secure Login</h3>
+                <p>Your account is safe and protected.</p>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SECTION -->
+
+        <div class="right-side">
+
+            <h2>Login</h2>
+
+            <p class="subtitle">
+                Enter your details to continue
+            </p>
+
+            <!-- INSTRUCTION BOX -->
+
+            <div class="instruction-box">
+
+                <h4>Login Instructions</h4>
+
+                <ul>
+                    <li>Enter your registered username</li>
+                    <li>Password is case-sensitive</li>
+                    <li>Keep your credentials secure</li>
+                    <li>Do not share your password</li>
+                </ul>
+
+            </div>
+
+            <!-- LOGIN FORM -->
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <!-- REGISTER LINK -->
+
+            <div class="register-link">
+
+                Don’t have an account?
+
+                <a href="/register/">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

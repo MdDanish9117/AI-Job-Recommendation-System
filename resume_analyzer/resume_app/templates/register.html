@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MAIN CARD */
+.container {
+    width: 900px;
+    max-width: 95%;
+    display: flex;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+/* LEFT SIDE */
+.left {
+    width: 45%;
+    background: linear-gradient(180deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.left p {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.feature {
+    margin-top: 20px;
+    background: rgba(255,255,255,0.15);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* RIGHT SIDE */
+.right {
+    width: 55%;
+    padding: 40px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+/* FORM */
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+    color: #374151;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    margin-top: 5px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 10px rgba(37,99,235,0.3);
+}
+
+/* BUTTON */
+.btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #2563eb, #1d4ed8);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ERROR */
+.error {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* LOGIN LINK */
+.login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.login-link a {
+    color: #2563eb;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* INSTRUCTION BOX */
+.instruction {
+    background: #f1f5f9;
+    border-left: 5px solid #2563eb;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.instruction h4 {
+    margin: 0 0 5px 0;
+    color: #1d4ed8;
+}
+
+.instruction ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 14px;
+    color: #475569;
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px){
+    .container {
+        flex-direction: column;
+    }
+    .left, .right {
+        width: 100%;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT PANEL -->
+    <div class="left">
+
+        <h1>Resume AI</h1>
+
+        <p>
+            Create your account and unlock AI-powered resume analysis,
+            skill detection and smart job recommendations.
+        </p>
+
+        <div class="feature">
+            ⚡ Instant Resume Scoring
+        </div>
+
+        <div class="feature">
+            🎯 Skill Detection AI
+        </div>
+
+        <div class="feature">
+            📊 Career Recommendations
+        </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right">
+
+        <h2>Create Account</h2>
+
+        <!-- INSTRUCTIONS -->
+        <div class="instruction">
+            <h4>Instructions</h4>
+            <ul>
+                <li>Username must be unique</li>
+                <li>Password should be strong (8+ characters)</li>
+                <li>Confirm password must match</li>
+                <li>Use valid credentials</li>
+            </ul>
+        </div>
+
+        <!-- ERROR -->
+        {% if form.errors %}
+        <div class="error">
+            {{ form.errors }}
+        </div>
+        {% endif %}
+
+        <!-- FORM -->
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <label>Username</label>
+            {{ form.username }}
+
+            <label>Password</label>
+            {{ form.password1 }}
+
+            <label>Confirm Password</label>
+            {{ form.password2 }}
+
+            <button type="submit" class="btn">
+                Register
+            </button>
+
+        </form>
+
+        <div class="login-link">
+            Already have an account?
+            <a href="/">Login</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
