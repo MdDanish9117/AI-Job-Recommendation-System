@@ -29,6 +29,7 @@ An AI-powered Django web application that analyzes resumes and recommends suitab
 - Python
 - Django
 - Django REST Framework (DRF)
+- Object Oriented Programming (OOP)
 - HTML
 - CSS
 - Bootstrap
