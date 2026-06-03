@@ -73,6 +73,22 @@ git clone https://github.com/MdDanish9117/AI-Job-Recommendation-System.git
 cd AI-Job-Recommendation-System
 ```
 
+## 📸 Screenshots
+
+### Register Page
+![Register](screenshots/register.png)
+
+### Login Page
+![Login](screenshots/login.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Resume Upload
+![Upload](screenshots/upload.png)
+
+
+
 ### Create Virtual Environment
 
 ```bash
