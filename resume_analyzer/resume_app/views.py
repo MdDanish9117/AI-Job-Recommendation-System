@@ -24,7 +24,12 @@ from django.http import (
 from reportlab.pdfgen import canvas
 
 from rest_framework import (
-    viewsets
+    viewsets,
+    filters
+)
+
+from rest_framework.permissions import (
+    IsAuthenticated
 )
 
 from .forms import (
@@ -63,13 +68,7 @@ def register_view(request):
             form.save()
 
             return redirect(
-                "/login/"
-            )
-
-        else:
-
-            print(
-                form.errors
+                "login"
             )
 
     else:
@@ -279,7 +278,7 @@ def download_pdf(
     )
 
     pdf.drawString(
-        160,
+        150,
         800,
         "Resume Analysis Report"
     )
@@ -359,17 +358,85 @@ def logout_view(request):
 
 
 # ===================================
-# DRF API
+# API VIEWSET
 # ===================================
 
 class ResumeViewSet(
     viewsets.ModelViewSet
 ):
 
-    queryset = (
-        Resume.objects.all()
-    )
-
     serializer_class = (
         ResumeSerializer
     )
+
+    permission_classes = [
+        IsAuthenticated
+    ]
+
+    filter_backends = [
+        filters.SearchFilter
+    ]
+
+    search_fields = [
+        "detected_skills",
+        "recommendation"
+    ]
+
+    def get_queryset(self):
+
+        return Resume.objects.filter(
+            user=self.request.user
+        ).order_by(
+            "-uploaded_at"
+        )
+
+    def perform_create(
+        self,
+        serializer
+    ):
+
+        resume = serializer.save(
+            user=self.request.user
+        )
+
+        extracted_text = (
+            extract_text_from_pdf(
+                resume.resume_file.path
+            )
+        )
+
+        skills = (
+            detect_skills(
+                extracted_text
+            )
+        )
+
+        score = (
+            calculate_resume_score(
+                skills
+            )
+        )
+
+        recommendation = (
+            get_recommendation(
+                skills
+            )
+        )
+
+        resume.extracted_text = (
+            extracted_text
+        )
+
+        resume.detected_skills = (
+            ", ".join(skills)
+        )
+
+        resume.resume_score = (
+            score
+        )
+
+        resume.recommendation = (
+            recommendation
+        )
+
+        resume.save()

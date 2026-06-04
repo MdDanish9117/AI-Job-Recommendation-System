@@ -1,10 +1,29 @@
-from django.urls import path
+from django.urls import (
+    path,
+    include
+)
+
+from rest_framework.routers import (
+    DefaultRouter
+)
+
 from . import views
+from .views import (
+    ResumeViewSet
+)
+
+
+router = DefaultRouter()
+
+router.register(
+    r"resumes",
+    ResumeViewSet,
+    basename="resume"
+)
 
 
 urlpatterns = [
 
-    # Register Page
     path(
         '',
         views.register_view,
@@ -17,45 +36,47 @@ urlpatterns = [
         name='register'
     ),
 
-    # Login Page
     path(
         'login/',
         views.login_view,
         name='login'
     ),
 
-    # Dashboard
     path(
         'dashboard/',
         views.dashboard,
         name='dashboard'
     ),
 
-    # Upload Resume
     path(
         'upload/',
         views.upload_resume,
         name='upload'
     ),
 
-    # Logout
     path(
         'logout/',
         views.logout_view,
         name='logout'
     ),
 
-    # PDF Download
     path(
-        'download/<int:resume_id>/',
+        'download-pdf/<int:resume_id>/',
         views.download_pdf,
         name='download_pdf'
     ),
 
-    # Delete Resume
     path(
-        'delete/<int:resume_id>/',
+        'delete-resume/<int:resume_id>/',
         views.delete_resume,
         name='delete_resume'
+    ),
+
+    # API
+    path(
+        'api/',
+        include(
+            router.urls
+        )
     ),
 ]

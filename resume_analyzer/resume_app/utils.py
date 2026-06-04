@@ -1,123 +1,162 @@
-import pdfplumber
+import PyPDF2
 
 
-skills_db = [
-    'python',
-    'django',
-    'mysql',
-    'html',
-    'css',
-    'javascript',
-    'react',
-    'api',
-    'machine learning',
-    'sql',
-    'git',
-    'github',
-    'bootstrap',
-    'django rest framework',
-    'docker',
-    'aws'
-]
+# ==========================
+# PDF TEXT EXTRACTION
+# ==========================
 
-
-# Extract text
 def extract_text_from_pdf(
     pdf_path
 ):
 
     text = ""
 
-    with pdfplumber.open(
-        pdf_path
-    ) as pdf:
+    try:
 
-        for page in pdf.pages:
+        with open(
+            pdf_path,
+            'rb'
+        ) as file:
 
-            page_text = (
-                page.extract_text()
+            reader = PyPDF2.PdfReader(
+                file
             )
 
-            if page_text:
+            for page in reader.pages:
 
-                text += (
-                    page_text.lower()
+                page_text = (
+                    page.extract_text()
                 )
+
+                if page_text:
+
+                    text += page_text
+
+    except Exception as e:
+
+        print(
+            "PDF Error:",
+            e
+        )
 
     return text
 
 
-# Detect skills
-def detect_skills(text):
+# ==========================
+# SKILL DETECTION
+# ==========================
 
-    found_skills = []
+def detect_skills(
+    text
+):
 
-    for skill in skills_db:
+    skills_database = [
+
+        'python',
+        'java',
+        'c++',
+        'django',
+        'flask',
+        'html',
+        'css',
+        'javascript',
+        'react',
+        'nodejs',
+        'sql',
+        'mysql',
+        'mongodb',
+        'machine learning',
+        'data science',
+        'ai',
+        'git',
+        'github',
+        'api',
+        'rest api',
+        'bootstrap'
+    ]
+
+    detected = []
+
+    text = text.lower()
+
+    for skill in skills_database:
 
         if skill.lower() in text:
 
-            found_skills.append(
+            detected.append(
                 skill
             )
 
-    return found_skills
+    return detected
 
 
-# Better score
+# ==========================
+# RESUME SCORE
+# ==========================
+
 def calculate_resume_score(
     skills
 ):
 
     total_skills = len(
-        skills_db
-    )
-
-    matched = len(
         skills
     )
 
-    score = int(
-        (matched / total_skills)
-        * 100
-    )
+    score = total_skills * 10
+
+    if score > 100:
+        score = 100
 
     return score
 
 
-# Recommendation system
+# ==========================
+# JOB RECOMMENDATION
+# ==========================
+
 def get_recommendation(
     skills
 ):
 
-    missing_skills = []
-
-    important_skills = [
-        'python',
-        'django',
-        'api',
-        'sql',
-        'git'
+    skills = [
+        skill.lower()
+        for skill in skills
     ]
 
-    for skill in important_skills:
-
-        if skill not in skills:
-
-            missing_skills.append(
-                skill
-            )
-
-    if len(
-        missing_skills
-    ) == 0:
-
+    if (
+        'django' in skills
+        or 'python' in skills
+    ):
         return (
-            "Excellent Resume!"
+            "Backend Developer"
+        )
+
+    elif (
+        'react' in skills
+        or 'javascript' in skills
+    ):
+        return (
+            "Frontend Developer"
+        )
+
+    elif (
+        'machine learning'
+        in skills
+        or 'ai' in skills
+    ):
+        return (
+            "AI/ML Engineer"
+        )
+
+    elif (
+        'sql' in skills
+        or 'mongodb'
+        in skills
+    ):
+        return (
+            "Database Developer"
         )
 
     return (
-        "Recommended Skills: "
-        + ", ".join(
-            missing_skills
-        )
+        "Software Developer"
     )

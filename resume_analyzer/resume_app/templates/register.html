@@ -1,163 +1,259 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Register</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #111827
+    );
+    padding:25px;
 }
 
 /* MAIN CARD */
-.container {
-    width: 900px;
-    max-width: 95%;
-    display: flex;
-    background: #fff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+
+.container{
+    width:1000px;
+    max-width:95%;
+    min-height:620px;
+    background:#ffffff;
+    border-radius:28px;
+    overflow:hidden;
+    display:flex;
+    box-shadow:0 25px 60px rgba(0,0,0,0.35);
 }
 
 /* LEFT SIDE */
-.left {
-    width: 45%;
-    background: linear-gradient(180deg, #2563eb, #1d4ed8);
-    color: white;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+.left{
+    width:50%;
+    background:linear-gradient(
+        180deg,
+        #b91c1c,
+        #dc2626,
+        #2563eb
+    );
+    color:white;
+    padding:50px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
-.left h1 {
-    font-size: 40px;
-    margin-bottom: 15px;
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:25px;
 }
 
-.left p {
-    font-size: 16px;
-    line-height: 1.6;
-    opacity: 0.9;
+.left h1{
+    font-size:48px;
+    margin-bottom:18px;
+    line-height:1.2;
 }
 
-.feature {
-    margin-top: 20px;
-    background: rgba(255,255,255,0.15);
-    padding: 15px;
-    border-radius: 12px;
+.left span{
+    color:#dbeafe;
+}
+
+.left p{
+    font-size:16px;
+    line-height:1.8;
+    color:#f8fafc;
+    margin-bottom:30px;
+}
+
+/* FEATURE BOX */
+
+.feature{
+    background:rgba(255,255,255,0.12);
+    border:1px solid rgba(255,255,255,0.15);
+    padding:16px;
+    border-radius:16px;
+    margin-bottom:15px;
+    transition:0.3s;
+}
+
+.feature:hover{
+    transform:translateY(-4px);
+    background:rgba(255,255,255,0.20);
 }
 
 /* RIGHT SIDE */
-.right {
-    width: 55%;
-    padding: 40px;
+
+.right{
+    width:50%;
+    padding:45px;
+    background:#f8fafc;
+    overflow-y:auto;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #111827;
+.right h2{
+    text-align:center;
+    margin-bottom:15px;
+    color:#111827;
+    font-size:36px;
 }
 
-/* FORM */
-label {
-    display: block;
-    margin-top: 12px;
-    font-weight: bold;
-    color: #374151;
+/* TWO PARTITION */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
 }
 
-input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 10px;
-    margin-top: 5px;
-    outline: none;
-}
-
-input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 10px rgba(37,99,235,0.3);
-}
-
-/* BUTTON */
-.btn {
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #2563eb, #1d4ed8);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-/* ERROR */
-.error {
-    background: #fee2e2;
-    color: #b91c1c;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-/* LOGIN LINK */
-.login-link {
-    text-align: center;
-    margin-top: 15px;
-}
-
-.login-link a {
-    color: #2563eb;
-    font-weight: bold;
-    text-decoration: none;
+.full-width{
+    grid-column:span 2;
 }
 
 /* INSTRUCTION BOX */
-.instruction {
-    background: #f1f5f9;
-    border-left: 5px solid #2563eb;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 15px;
+
+.instruction{
+    background:#eff6ff;
+    border-left:5px solid #2563eb;
+    padding:15px;
+    border-radius:14px;
+    margin-bottom:20px;
 }
 
-.instruction h4 {
-    margin: 0 0 5px 0;
-    color: #1d4ed8;
+.instruction h4{
+    color:#dc2626;
+    margin-bottom:8px;
 }
 
-.instruction ul {
-    margin: 0;
-    padding-left: 18px;
-    font-size: 14px;
-    color: #475569;
+.instruction ul{
+    padding-left:18px;
+    color:#475569;
+    line-height:1.8;
+    font-size:14px;
+}
+
+/* ERROR */
+
+.error{
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+/* FORM */
+
+label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+    color:#374151;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #cbd5e1;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+    transition:0.3s;
+    background:white;
+}
+
+input:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 12px rgba(37,99,235,0.25);
+}
+
+/* BUTTON */
+
+.btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(
+        90deg,
+        #dc2626,
+        #2563eb
+    );
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(220,38,38,0.30);
+}
+
+/* LOGIN LINK */
+
+.login-link{
+    text-align:center;
+    margin-top:18px;
+    color:#64748b;
+}
+
+.login-link a{
+    color:#2563eb;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.login-link a:hover{
+    text-decoration:underline;
 }
 
 /* RESPONSIVE */
-@media(max-width: 768px){
-    .container {
-        flex-direction: column;
+
+@media(max-width:850px){
+
+    .container{
+        flex-direction:column;
     }
-    .left, .right {
-        width: 100%;
+
+    .left,
+    .right{
+        width:100%;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full-width{
+        grid-column:span 1;
+    }
+
+    .left h1{
+        font-size:40px;
     }
 }
+
 </style>
 
 </head>
@@ -167,46 +263,61 @@ input:focus {
 <div class="container">
 
     <!-- LEFT PANEL -->
+
     <div class="left">
 
-        <h1>Resume AI</h1>
+        <div class="logo">
+            Resume Analyzer
+        </div>
+
+        <h1>
+            Join <br>
+            <span>Resume AI</span>
+        </h1>
 
         <p>
-            Create your account and unlock AI-powered resume analysis,
-            skill detection and smart job recommendations.
+            Create your account to unlock AI-powered
+            resume analysis, ATS score checking,
+            smart skill detection and career recommendations.
         </p>
 
         <div class="feature">
-            ⚡ Instant Resume Scoring
+            ⚡ Instant Resume Analysis
         </div>
 
         <div class="feature">
-            🎯 Skill Detection AI
+            🎯 Smart Skill Detection
         </div>
 
         <div class="feature">
-            📊 Career Recommendations
+            📈 Career Recommendations
         </div>
 
     </div>
 
     <!-- RIGHT PANEL -->
+
     <div class="right">
 
         <h2>Create Account</h2>
 
         <!-- INSTRUCTIONS -->
+
         <div class="instruction">
-            <h4>Instructions</h4>
+
+            <h4>Registration Guidelines</h4>
+
             <ul>
-                <li>Username must be unique</li>
-                <li>Password should be strong (8+ characters)</li>
+                <li>Choose a unique username</li>
+                <li>Password should be strong</li>
+                <li>Minimum 8 characters required</li>
                 <li>Confirm password must match</li>
-                <li>Use valid credentials</li>
             </ul>
+
         </div>
 
         <!-- ERROR -->
+
         {% if form.errors %}
         <div class="error">
             {{ form.errors }}
@@ -214,22 +325,35 @@ input:focus {
         {% endif %}
 
         <!-- FORM -->
+
         <form method="POST">
 
             {% csrf_token %}
 
-            <label>Username</label>
-            {{ form.username }}
+            <div class="form-grid">
 
-            <label>Password</label>
-            {{ form.password1 }}
+                <div>
+                    <label>Username</label>
+                    {{ form.username }}
+                </div>
 
-            <label>Confirm Password</label>
-            {{ form.password2 }}
+                <div>
+                    <label>Password</label>
+                    {{ form.password1 }}
+                </div>
 
-            <button type="submit" class="btn">
-                Register
-            </button>
+                <div class="full-width">
+                    <label>Confirm Password</label>
+                    {{ form.password2 }}
+                </div>
+
+                <div class="full-width">
+                    <button type="submit" class="btn">
+                        Create Account
+                    </button>
+                </div>
+
+            </div>
 
         </form>
 

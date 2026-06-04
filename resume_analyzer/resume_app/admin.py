@@ -7,23 +7,15 @@ class ResumeAdmin(
     admin.ModelAdmin
 ):
 
-    list_display = (
+    list_display = [
         'id',
         'user',
         'resume_score',
+        'recommendation',
         'uploaded_at'
-    )
+    ]
 
-    search_fields = (
+    search_fields = [
         'user__username',
         'detected_skills'
-    )
-
-    list_filter = (
-        'uploaded_at',
-        'resume_score'
-    )
-
-    readonly_fields = (
-        'uploaded_at',
-    )
+    ]
