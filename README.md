@@ -34,9 +34,19 @@ This project is designed to simplify recruitment and career guidance by using AI
 
 ✅ Django REST API Integration
 
-✅ CRUD Operations
+✅ REST API Endpoints
 
----
+✅ API List View
+
+✅ API Create Feature
+
+✅ API Update Feature
+
+✅ API Delete Feature
+
+✅ JSON Response Handling
+
+✅ Secure Authentication System
 
 ## 🛠️ Tech Stack
 
@@ -151,15 +161,18 @@ DELETE /api/jobs/<id>/
 
 ## 📸 Project Screenshots
 
-### 🔐 Login Page
 
-![Login](screenshot/login.jpeg)
-
----
 
 ### 📝 Register Page
 
 ![Register](screenshot/register.jpeg)
+
+
+---
+
+### 🔐 Login Page
+
+![Login](screenshot/login.jpeg)
 
 ---
 
@@ -211,7 +224,7 @@ DELETE /api/jobs/<id>/
 
 ## 👨‍💻 Author
 
-**Danish Ahmad**
+**Mohammad Danish**
 
 📧 Email: your-email@example.com
 
