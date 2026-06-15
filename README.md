@@ -77,7 +77,7 @@ cd AI-Job-Recommendation-System
 ## 📸 Screenshots
 
 ### Register Page
-![Register](screenshots/register.png)
+![Register](screenshots/register.jpeg)
 
 ### Login Page
 ![Login](screenshots/login.png)
